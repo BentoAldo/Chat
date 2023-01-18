@@ -1,9 +1,9 @@
-using Serilog;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Diagnostics;
+using Serilog;
 using StockBot.Application;
 using StockBot.Application.Common.Errors;
 using StockBot.Domain.Interfaces;

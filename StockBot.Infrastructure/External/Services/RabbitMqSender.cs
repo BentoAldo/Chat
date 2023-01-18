@@ -27,7 +27,7 @@ public class RabbitMqSender : IRabbitMqSender
             "BotQueue",
             null,
             body);
-        
+
         return Task.CompletedTask;
     }
 }

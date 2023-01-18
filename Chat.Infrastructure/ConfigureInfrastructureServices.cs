@@ -31,7 +31,7 @@ public static class ConfigureInfrastructureServices
         services.AddTransient<IChatRoomServices, ChatRoomServices>();
         services.AddTransient<IUserServices, UserServices>();
         services.AddTransient<IBotServices, BotServices>();
-        
+
         services.AddHttpClient<IBotServices, BotServices>("ApiClient",
             c => { c.BaseAddress = new Uri("https://localhost:7116"); });
 

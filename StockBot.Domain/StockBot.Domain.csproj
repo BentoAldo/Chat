@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="MessageBroker" />
+        <Folder Include="MessageBroker"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MediatR" Version="11.1.0" />
+        <PackageReference Include="MediatR" Version="11.1.0"/>
     </ItemGroup>
 
 </Project>

@@ -6,8 +6,7 @@
         {
             var message = Messages.ElementAt(i);
             @(i + 1)
-            <p class="@(message.Contains(UserName) ? "txt-message-me" : message.Contains("Bot") ? "txt-message-bot" : 
-                          "txt-message-other")">@message</p>
+            <p class="@(message.Contains(UserName) ? "txt-message-me" : message.Contains("Bot") ? "txt-message-bot" : "txt-message-other")">@message</p>
             if (i == Messages.Count - 1)
             {
                 <input @ref="LastMessage" readonly="readonly" class="opacity-0"/>

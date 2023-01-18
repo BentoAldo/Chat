@@ -18,7 +18,7 @@ public class GetStockQuotePerCode : EndpointWithoutRequest<BaseResponse<Stock>>
     {
         var code = Route<string>("code");
         Response = await _stockServices.GetStockAsync(code!);
-        await SendAsync(Response, !Response.Success ? Response.ProblemDetails?.Status ?? 500 : 200, cancellation: ct);
+        await SendAsync(Response, !Response.Success ? Response.ProblemDetails?.Status ?? 500 : 200, ct);
     }
 
     public override void OnValidationFailed()

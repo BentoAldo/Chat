@@ -12,6 +12,6 @@ public class ChatHub : Microsoft.AspNetCore.SignalR.Hub
     public async Task JoinRoom(string room)
     {
         await Groups.AddToGroupAsync(Context.ConnectionId, room);
-       // await Clients.Group(room).SendAsync("ShowWho", $"{Context.ConnectionId} joined {room}");
+        // await Clients.Group(room).SendAsync("ShowWho", $"{Context.ConnectionId} joined {room}");
     }
 }

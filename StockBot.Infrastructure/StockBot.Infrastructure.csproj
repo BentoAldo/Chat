@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\StockBot.Application\StockBot.Application.csproj" />
+        <ProjectReference Include="..\StockBot.Application\StockBot.Application.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="RabbitMQ.Client" Version="6.4.0" />
+        <PackageReference Include="RabbitMQ.Client" Version="6.4.0"/>
     </ItemGroup>
 
 </Project>

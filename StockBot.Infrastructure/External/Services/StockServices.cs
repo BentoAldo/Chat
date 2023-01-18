@@ -14,24 +14,6 @@ public class StockServices : IStockServices
         _httpClient = httpClient;
     }
 
-    private static async Task<Stock> GetStockFromFile(HttpContent content)
-    {
-        var stockResponse = await content.ReadAsStringAsync();
-        var data = stockResponse[(stockResponse.IndexOf(Environment.NewLine, StringComparison.Ordinal) + 1)..];
-        var processedData = data.Split(',');
-        return new Stock
-        {
-            Symbol = processedData[0],
-            Date = !processedData[1].Contains("N/D") ? DateOnly.FromDateTime(Convert.ToDateTime(processedData[1])) : default,
-            Time = !processedData[2].Contains("N/D") ? TimeOnly.FromDateTime(Convert.ToDateTime(processedData[2])) : default,
-            Open = processedData[3],
-            High = processedData[4],
-            Low = processedData[5],
-            Close = processedData[6],
-            Volume = !processedData[7].Contains("N/D") ? Convert.ToInt32(processedData[7]) : default,
-        };
-    }
-
     public async Task<BaseResponse<Stock>> GetStockAsync(string code)
     {
         var httpResponseMessage = await _httpClient.GetAsync($"?s={code}&f=sd2t2ohlcv&h&e=csv");
@@ -43,6 +25,28 @@ public class StockServices : IStockServices
             ProblemDetails = !httpResponseMessage.IsSuccessStatusCode
                 ? await httpResponseMessage.Content.ReadFromJsonAsync<ProblemDetails>()
                 : null
+        };
+    }
+
+    private static async Task<Stock> GetStockFromFile(HttpContent content)
+    {
+        var stockResponse = await content.ReadAsStringAsync();
+        var data = stockResponse[(stockResponse.IndexOf(Environment.NewLine, StringComparison.Ordinal) + 1)..];
+        var processedData = data.Split(',');
+        return new Stock
+        {
+            Symbol = processedData[0],
+            Date = !processedData[1].Contains("N/D")
+                ? DateOnly.FromDateTime(Convert.ToDateTime(processedData[1]))
+                : default,
+            Time = !processedData[2].Contains("N/D")
+                ? TimeOnly.FromDateTime(Convert.ToDateTime(processedData[2]))
+                : default,
+            Open = processedData[3],
+            High = processedData[4],
+            Low = processedData[5],
+            Close = processedData[6],
+            Volume = !processedData[7].Contains("N/D") ? Convert.ToInt32(processedData[7]) : default
         };
     }
 }

@@ -9,24 +9,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Blazored.Toast" Version="4.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.2" />
-        <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.2" />
+        <PackageReference Include="Blazored.Toast" Version="4.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.2"/>
+        <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.2"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="RabbitMQ.Client" Version="6.4.0" />
-        <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+        <PackageReference Include="RabbitMQ.Client" Version="6.4.0"/>
+        <PackageReference Include="Serilog.AspNetCore" Version="6.1.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Chat.Application\Chat.Application.csproj" />
-        <ProjectReference Include="..\Chat.Infrastructure\Chat.Infrastructure.csproj" />
+        <ProjectReference Include="..\Chat.Application\Chat.Application.csproj"/>
+        <ProjectReference Include="..\Chat.Infrastructure\Chat.Infrastructure.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <_ContentIncludedByDefault Remove="Pages\ChatRooms\ChatRooms.razor" />
+        <_ContentIncludedByDefault Remove="Pages\ChatRooms\ChatRooms.razor"/>
     </ItemGroup>
 
 </Project>

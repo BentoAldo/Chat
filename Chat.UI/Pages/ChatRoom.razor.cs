@@ -13,37 +13,37 @@ namespace Chat.Web.Pages;
 public partial class ChatRoom
 {
     [Parameter] public string Id { get; set; } = string.Empty;
-    
+
     [Inject] public UserManager<ApplicationUser> UserManager { get; set; } = null!;
-    
+
     [Inject] public IJSRuntime JsRuntime { get; set; } = null!;
-    
+
     [Inject] public HttpClient HttpClient { get; set; } = null!;
 
     private LinkedList<string> Messages { get; set; } = new();
-    
+
     private IEnumerable<ApplicationUser> Users { get; set; } = new List<ApplicationUser>();
 
     private string NewMessage { get; set; } = string.Empty;
-    
+
     private string UserId { get; set; } = string.Empty;
-    
+
     private string UserName { get; set; } = string.Empty;
-    
+
     private HubConnection? Connection { get; set; }
-    
+
     private ElementReference LastMessage { get; set; }
-    
+
     private async Task LoadUsers()
     {
         Users = await UserManager.Users.Where(x => x.Id != UserId).ToListAsync();
     }
-    
+
     private async Task<string> GetStockPriceAsync(string stockCode)
     {
         var response = await BotServices.GetStockAsync(stockCode);
         var quote = response?.Data?.Close;
-        
+
         return $"{stockCode} quote is {quote} per share";
     }
 
@@ -51,7 +51,7 @@ public partial class ChatRoom
     {
         if (Connection is not null)
         {
-            if(NewMessage.StartsWith("/stock="))
+            if (NewMessage.StartsWith("/stock="))
             {
                 var stockCode = NewMessage.Replace("/stock=", string.Empty);
                 var stockPrice = await GetStockPriceAsync(stockCode);
@@ -82,7 +82,7 @@ public partial class ChatRoom
             }
         }
     }
-    
+
     private async Task SetUser()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
@@ -111,18 +111,12 @@ public partial class ChatRoom
 
     private async Task Enter(KeyboardEventArgs e)
     {
-        if (e.Code is "Enter" or "NumpadEnter")
-        {
-           await SendMessage();
-        }
+        if (e.Code is "Enter" or "NumpadEnter") await SendMessage();
     }
 
     private async Task JoinRoom()
     {
-        if (Connection is not null)
-        {
-            await Connection.SendAsync("JoinRoom", Id);
-        }
+        if (Connection is not null) await Connection.SendAsync("JoinRoom", Id);
     }
 
     private async Task LoadMessages()
@@ -133,7 +127,7 @@ public partial class ChatRoom
 
     protected override async Task OnParametersSetAsync()
     {
-        if (!int.TryParse(Id, out _ )) NavigationManager.NavigateTo("/");
+        if (!int.TryParse(Id, out _)) NavigationManager.NavigateTo("/");
         await SetUser();
         await LoadUsers();
         await StartHubConnection();

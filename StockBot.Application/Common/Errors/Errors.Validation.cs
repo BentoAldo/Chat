@@ -4,7 +4,7 @@ using StockBot.Domain.Interfaces;
 
 namespace StockBot.Application.Common.Errors;
 
-public static partial class Errors
+public static class Errors
 {
     public static (int, string?, string?, Dictionary<string, object?>) ParsingFailedDetails(JsonException jsonException)
     {

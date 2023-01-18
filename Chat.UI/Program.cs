@@ -32,7 +32,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSignalR(o => { o.EnableDetailedErrors = true; });
 
-builder.Services.AddResponseCompression(o => 
+builder.Services.AddResponseCompression(o =>
     o.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "application/octet-stream" }));
 
 builder.Services
