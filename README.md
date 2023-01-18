@@ -17,4 +17,6 @@ Generate Database from Package Manager Console in Visual Studio
 
 ## Installation
 * Download the repo and open the Chat.sln file.
+* Install Sql Server locally
 * Run the command `dotnet ef database update` to create database tables.
+* Run the Chat.UI project and StockBot.Api project
