@@ -1,4 +1,5 @@
 using Chat.Application.Common.Interfaces;
+using Chat.Infrastructure.Api;
 using Chat.Infrastructure.Data;
 using Chat.Infrastructure.Data.Services;
 using Microsoft.EntityFrameworkCore;
@@ -20,14 +21,19 @@ public static class ConfigureInfrastructureServices
         {
             options.UseSqlServer(connectionString,
                 opts => opts.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
-            
+
             // Only uncomment this line if you are in development
             options.EnableSensitiveDataLogging();
         });
-        
+
         // Declaration of services
         services.AddTransient<IMessageServices, MessageServices>();
         services.AddTransient<IChatRoomServices, ChatRoomServices>();
+        services.AddTransient<IUserServices, UserServices>();
+        services.AddTransient<IBotServices, BotServices>();
+        
+        services.AddHttpClient<IBotServices, BotServices>("ApiClient",
+            c => { c.BaseAddress = new Uri("https://localhost:7116"); });
 
         return services;
     }

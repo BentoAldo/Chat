@@ -18,19 +18,13 @@ public class ChatRoomConfig : IEntityTypeConfiguration<ChatRoom>
                 Name = "Chat Room 1",
                 Description = "The first Chat Room",
                 CreatedAt = DateTime.Now
-            }, 
-            new ChatRoom 
+            },
+            new ChatRoom
             {
                 Id = 2,
                 Name = "Chat Room 2",
                 Description = "The second Chat Room",
                 CreatedAt = DateTime.Now
             });
-
-        // Property OwnerId is foreign key of ApplicationUser
-        /*builder.HasOne(prop => prop.Owner)
-            .WithMany(prop => prop.ChatRooms)
-            .HasForeignKey(prop => prop.OwnerId)
-            .OnDelete(DeleteBehavior.Restrict);*/
     }
 }

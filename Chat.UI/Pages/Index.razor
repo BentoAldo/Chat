@@ -1,0 +1,13 @@
+﻿@page "/"
+@using Chat.Web.Components
+
+<PageTitle>Chat App</PageTitle>
+
+<h1 class="mb-3">Welcome to the Chat App</h1>
+
+<AuthorizeView>
+    @foreach (var room in ChatRooms)
+    {
+        <ChatRoomPanel RoomName="@room.Name" RoomDescription="@room.Description" RoomId="@room.Id.ToString()"/>
+    }
+</AuthorizeView>

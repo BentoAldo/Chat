@@ -126,6 +126,22 @@ namespace Chat.Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ChatRooms");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 1, 17, 20, 13, 40, 279, DateTimeKind.Local).AddTicks(2250),
+                            Description = "The first Chat Room",
+                            Name = "Chat Room 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 1, 17, 20, 13, 40, 279, DateTimeKind.Local).AddTicks(2300),
+                            Description = "The second Chat Room",
+                            Name = "Chat Room 2"
+                        });
                 });
 
             modelBuilder.Entity("Chat.Domain.Entities.Message", b =>
@@ -136,15 +152,19 @@ namespace Chat.Infrastructure.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ChatRoomId")
+                    b.Property<int>("ChatRoomId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2023, 1, 17, 20, 13, 40, 279, DateTimeKind.Local).AddTicks(2930));
 
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -312,13 +332,13 @@ namespace Chat.Infrastructure.Data.Migrations
                 {
                     b.HasOne("Chat.Domain.Entities.ChatRoom", null)
                         .WithMany("Messages")
-                        .HasForeignKey("ChatRoomId");
+                        .HasForeignKey("ChatRoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Chat.Domain.Entities.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });

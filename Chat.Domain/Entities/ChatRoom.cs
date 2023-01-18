@@ -8,6 +8,6 @@ public class ChatRoom
     public DateTime CreatedAt { get; set; }
 
     public ICollection<ApplicationUser>? Users { get; set; }
-    
+
     public ICollection<Message>? Messages { get; set; }
 }

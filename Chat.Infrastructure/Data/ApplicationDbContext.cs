@@ -12,7 +12,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
         : base(options)
     {
     }
-    
+
     public DbSet<Message> Messages => Set<Message>();
 
     public DbSet<ChatRoom> ChatRooms => Set<ChatRoom>();

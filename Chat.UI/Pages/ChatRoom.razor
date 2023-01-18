@@ -1,0 +1,25 @@
+@page "/Room/{Id}"
+
+<div class="chat-container">
+    <div class="chat-messages" id="chat-messages">
+        @for (var i = 0; i < Messages.Count; i++)
+        {
+            var message = Messages.ElementAt(i);
+            @(i + 1)
+            <p class="@(message.Contains(UserName) ? "txt-message-me" : message.Contains("Bot") ? "txt-message-bot" : 
+                          "txt-message-other")">@message</p>
+            if (i == Messages.Count - 1)
+            {
+                <input @ref="LastMessage" readonly="readonly" class="opacity-0"/>
+            }
+        }
+    </div>
+    <div class="chat-controls">
+        <div class="input-message">
+            <input placeholder="Type here..." @bind="@NewMessage" @bind:event="oninput" @onkeydown="Enter"/>
+        </div>
+        <button @onclick="SendMessage" class="btn-primary">
+            Send Message
+        </button>
+    </div>
+</div>

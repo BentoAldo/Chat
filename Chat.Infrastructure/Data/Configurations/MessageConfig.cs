@@ -8,9 +8,6 @@ public class MessageConfig : IEntityTypeConfiguration<Message>
 {
     public void Configure(EntityTypeBuilder<Message> builder)
     {
-        /*builder.HasOne(m => m.User)
-            .WithMany(u => u.Messages)
-            .HasForeignKey(m => m.UserId)
-            .OnDelete(DeleteBehavior.Restrict);*/
+        builder.Property(m => m.Date).HasDefaultValue(DateTime.Now);
     }
 }

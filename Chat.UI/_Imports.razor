@@ -1,0 +1,27 @@
+﻿@using System.Net.Http
+@using AutoMapper
+@using Chat.Application.Common
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.JSInterop
+@using Chat.Web
+@using Chat.Web.Shared
+@using Microsoft.Extensions.Options
+@using Blazored.Toast
+@using Blazored.Toast.Services
+@using Chat.Application.Common.Interfaces
+
+@inject NavigationManager NavigationManager
+@inject IOptions<AppDefaults> Settings
+@inject IMapper Mapper
+@inject IToastService ToastService
+
+@inject IUserServices UserServices
+@inject IChatRoomServices ChatRoomServices
+@inject IMessageServices MessageServices
+@inject IBotServices BotServices
+@inject AuthenticationStateProvider AuthenticationStateProvider
