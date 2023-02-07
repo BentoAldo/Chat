@@ -15,7 +15,7 @@ public class StockServicesTests
     }
 
     [Test]
-    public void GetStockAsync_InputCode_ReturnStock()
+    public void GetStockAsync_InputCode_ReturnsStock()
     {
         // Arrange
         const string code = "aapl.us";
@@ -28,14 +28,15 @@ public class StockServicesTests
             {
                 Symbol= code.ToUpper(),
                 Date = DateOnly.FromDateTime(DateTime.Now),
-                Open = "100",
-                High = "200",
-                Low = "50",
-                Close = "150",
-                Volume = 1000
+                Time = new TimeOnly(20,18,29),
+                Open = "150.64",
+                High = "155.23",
+                Low = "150.64",
+                Close = "153.62",
+                Volume = 42469455
             }
         });
-        
+
         var actual = _stockServices.Object.GetStockAsync(code).Result;
 
         // Assert
