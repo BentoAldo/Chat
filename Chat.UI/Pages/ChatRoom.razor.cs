@@ -51,7 +51,7 @@ public partial class ChatRoom
     {
         if (Connection is not null)
         {
-            if (NewMessage.StartsWith("/stock="))
+            if (NewMessage.StartsWith("/stock=") && NewMessage.Length > 7)
             {
                 var stockCode = NewMessage.Replace("/stock=", string.Empty);
                 var stockPrice = await GetStockPriceAsync(stockCode);
