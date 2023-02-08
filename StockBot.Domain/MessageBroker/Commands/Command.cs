@@ -1,6 +1,6 @@
 using StockBot.Domain.MessageBroker.Events;
 
-namespace MicroRabbit.Domain.Core.Commands;
+namespace StockBot.Domain.MessageBroker.Commands;
 
 public abstract class Command : Message
 {

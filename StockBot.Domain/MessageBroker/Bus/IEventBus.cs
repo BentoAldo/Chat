@@ -1,4 +1,4 @@
-using MicroRabbit.Domain.Core.Commands;
+using StockBot.Domain.MessageBroker.Commands;
 using StockBot.Domain.MessageBroker.Events;
 
 namespace StockBot.Domain.MessageBroker.Bus;
